@@ -4,9 +4,6 @@ public class SaleItem {
 	private Product product;
 	private int quantity;
 	
-	public void setProduct(Product product) {
-		this.product = product;
-	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
@@ -31,5 +28,15 @@ public class SaleItem {
 				this.getSubtotal());
 		
 		return itemStr;
+	}
+	
+	public void createProduct(String code, int quantity) {
+		String[] productData = DataBase.selectProduct(code);
+		this.quantity = quantity;
+		this.product = new Product();
+		product.setDescription(productData[0]);
+		product.setPrice(Double.parseDouble(productData[1]));
+		
+		this.product = product;
 	}
 }

@@ -3,30 +3,33 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sale {
+public class Sale{
 	private List<SaleItem> list = new ArrayList<>();
 	
-	public void addProduct(String description, double price, int quantity) {
-		Product product = new Product();
-		product.setDescription(description);
-		product.setPrice(price);
-		SaleItem sale = new SaleItem();
-		sale.setProduct(product);
-		sale.setQuantity(quantity);
-		list.add(sale);
+	public void createSaleItem(String code, int quantity) {
+		SaleItem item = new SaleItem();
+		item.createProduct(code, quantity);
+		list.add(item);
 	}
 	
-	public double getTotal() {
+	public double getTotal(Payment payment) {
 		double total = 0;
 		
 		for (SaleItem saleItem : list) {
 			total += saleItem.getSubtotal();
 		}
 		
-		return total;
+		return payment.paymentMethod(total);
 	}
 	
-	public List<SaleItem> getItems(){
-		return new ArrayList<>(list);
+	
+	public List<String> getItems(){
+		List<String> itemsStr = new ArrayList<>();
+		for (SaleItem saleItem : list) {
+
+			itemsStr.add(saleItem.toString());
+		}
+		return itemsStr;
 	}
+
 }
