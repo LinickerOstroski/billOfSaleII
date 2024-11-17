@@ -20,14 +20,6 @@ public class Main {
 			System.out.println(item);
 		}
 		
-		//sale.addProduct("Rice", 30.0, 5);
-		//sale.addProduct("Beans", 15.0, 4);
-		
-		//Opcional, não temos necessidade de importar model.SaleItem
-		//for (SaleItem items : sale.getItems()) {
-		//	System.out.println(items.toString());
-		//}
-		
 		System.out.println(String.format("Total: %.2f", sale.getTotal(debit)));
 		System.out.println(String.format("Total: %.2f", sale.getTotal(credit)));
 		
